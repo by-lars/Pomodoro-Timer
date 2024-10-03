@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ToolBox.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ToolBox.Views.PomodoroView"
+             x:DataType="vm:PomodoroViewModel">
+    <Design.DataContext>
+        <vm:PomodoroViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto"  VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid>
+            <Arc StartAngle="150" SweepAngle="240" Stroke="{DynamicResource SystemChromeGrayColor}" StrokeThickness="1"
+                 Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+            <Arc StartAngle="150" SweepAngle="{Binding ArcAngle}" Stroke="{DynamicResource SystemAccentColor}" StrokeThickness="5"
+                 Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0, 0, 0, 20">
+                <Label HorizontalAlignment="Center" FontSize="28" FontWeight="Light" Content="{Binding TimeText}"></Label>
+                <Label HorizontalAlignment="Center" FontWeight="ExtraLight" Content="{Binding StatusText}"></Label>
+            </StackPanel>
+        </Grid>
+        <StackPanel Margin="10" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding ToggleTimerCommand}" HorizontalAlignment="Center" Background="LightSkyBlue" Content="{Binding ToggleTimerText}"></Button>
+            <Button Command="{Binding PlusFiveTimerCommand}" HorizontalAlignment="Center">+5</Button>
+            <Button Command="{Binding CancelTimerCommand}" HorizontalAlignment="Center">Reset</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
